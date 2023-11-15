@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { calculateWinner } from "../libs/calculateWinner";
 import { Square } from "./Square";
 
@@ -45,5 +44,3 @@ export function Board({ xIsNext, squares, onPlay }: Props) {
     </>
   );
 }
-
-// TODO：iがlinesに含まれていればsquareの色を変える　Propsにboolean追加　line.include(i) isRedがtrueの時に色変える　styleかclass追加か
