@@ -56,6 +56,10 @@ body {
   padding: 0;
 }
 
+.board-box {
+  display: grid;
+  grid-template-columns: 0fr 0fr 0fr;
+}
 .square {
   background: #fff;
   border: 1px solid #999;
@@ -69,6 +73,10 @@ body {
   padding: 0;
   text-align: center;
   width: 34px;
+}
+
+.red {
+  color: red;
 }
 
 .board-row:after {

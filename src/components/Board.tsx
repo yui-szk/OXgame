@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { calculateWinner } from "../libs/calculateWinner";
 import { Square } from "./Square";
 
@@ -20,31 +21,29 @@ export function Board({ xIsNext, squares, onPlay }: Props) {
     }
     onPlay(nextSquares);
   }
-  const winner = calculateWinner(squares);
+  const result = calculateWinner(squares);
   let status;
-  if (winner) {
-    status = "Winner:" + winner;
+  if (result) {
+    status = "Winner:" + result.winner;
+    console.log(result);
   } else {
     status = "Next player:" + (xIsNext ? "X" : "O");
   }
+
   return (
     <>
       <div className="status">{status}</div>
-      <div className="board-row">
-        <Square value={squares[0]} onSquareClick={() => handleClick(0)} />
-        <Square value={squares[1]} onSquareClick={() => handleClick(1)} />
-        <Square value={squares[2]} onSquareClick={() => handleClick(2)} />
-      </div>
-      <div className="board-row">
-        <Square value={squares[3]} onSquareClick={() => handleClick(3)} />
-        <Square value={squares[4]} onSquareClick={() => handleClick(4)} />
-        <Square value={squares[5]} onSquareClick={() => handleClick(5)} />
-      </div>
-      <div className="board-row">
-        <Square value={squares[6]} onSquareClick={() => handleClick(6)} />
-        <Square value={squares[7]} onSquareClick={() => handleClick(7)} />
-        <Square value={squares[8]} onSquareClick={() => handleClick(8)} />
+      <div className="board-box">
+        {squares.map((square, i) => (
+          <Square
+            value={square}
+            onSquareClick={() => handleClick(i)}
+            isRed={result?.line.includes(i)}
+          />
+        ))}
       </div>
     </>
   );
 }
+
+// TODO：iがlinesに含まれていればsquareの色を変える　Propsにboolean追加　line.include(i) isRedがtrueの時に色変える　styleかclass追加か
